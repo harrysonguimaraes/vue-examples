@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Example</title>
+
+	<style>
+		.active {
+			color: orange;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+
+		<nav>
+			
+			<!-- É aplicado a classe active de acordo com a avaliação da expressão booleana. -->
+			<a href="#" v-bind:class="{active: itemAtivo == 'Home'}" v-on:click="selecionarItem('Home')">Home</a>
+			<a href="#" v-bind:class="{active: itemAtivo == 'Contato'}" v-on:click="selecionarItem('Contato')">Contato</a>
+			<a href="#" v-bind:class="{active: itemAtivo == 'Sobre'}" v-on:click="selecionarItem('Sobre')">Sobre</a>
+			<a href="#" v-bind:class="{active: itemAtivo == 'Projetos'}" v-on:click="selecionarItem('Projetos')">Projetos</a>	
+
+		</nav>
+
+		<p>Item selecionado: {{itemAtivo}}</p>
+
+	</div>
+	
+	<script src="../vue.js"></script>
+	<script>
+		new Vue({
+			el: "#app",
+
+			data: {
+				itemAtivo: "Home"
+			},
+
+			// Todas as funções a serem chamadas pela view são definidas aqui.
+			methods: {
+				selecionarItem: function(item) {
+					this.itemAtivo = item;
+				}
+			}
+		});
+	</script>
+</body>
+</html>

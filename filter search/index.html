@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Example</title>
+</head>
+<body>
+	<div id="app">
+		<span>
+			Filtro:
+		</span>
+		<input type="text" v-model="filtro">
+		
+		<ul>
+			<li v-for="fruta in frutasFiltradas">{{fruta.nome}}</li>
+		</ul>
+	</div>
+	
+	<script src="../vue.js"></script>
+	<script>
+		new Vue({
+			el: "#app",
+
+			data: {
+				frutas: [
+					{nome: "Maçã"},
+					{nome: "Uva"},
+					{nome: "Banana"}
+				],
+				filtro: ""
+			},
+
+			// Computed é invocado quando há mudanças. O array de frutasFiltradas executa esse função.
+			computed: {
+				frutasFiltradas: function() {
+					var frutasFiltradas = this.frutas,
+						filtro = this.filtro;
+
+					if (!filtro){
+						return frutasFiltradas;
+					}
+
+					filtro = filtro.trim().toLowerCase();
+
+					frutasFiltradas = frutasFiltradas.filter(function(item) {
+
+						if (item.nome.toLowerCase().indexOf(filtro) !== -1) {
+							return item;
+						}
+					});
+
+					return frutasFiltradas;
+				}
+			}
+		})
+	</script>
+</body>
+</html>

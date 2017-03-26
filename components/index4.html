@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Example</title>
+</head>
+<body>
+
+	<div id="counter-event-example">
+	  <p>{{ total }}</p>
+	  <!-- Esse total é da instancia do Vue. Externo a qualquer componente. -->
+
+	  <button-counter v-on:botao-componente-clicado="incrementTotal"></button-counter>
+	  <button-counter v-on:botao-componente-clicado="incrementTotal"></button-counter>
+	  <!-- Os buttons se registram para ao ouvir o evento 'botao-componente-clicado' (v-on:botaoComponenteClicado) invocar o método incrementTotal do Vue, que é de fora do componente' -->
+	</div>
+
+	
+	<script src="../vue.js"></script>
+	<script>
+
+		Vue.component('button-counter', {
+			// O clique do botão do componente invoca o método increment que tb é do component
+		  template: '<button v-on:click="increment">{{ counter }}</button>',
+		  data: function () {
+		    return {
+		      counter: 0
+		    }
+		  },
+		  methods: {
+		    increment: function () {
+		      this.counter += 1
+		      // Nesse momento o método dispara o evento 'botao-componente-clicado' que é ouvido pela aplicação de fora do componente, que ao ouvir, invoca o método incrementTotal de fora do componente.
+		      this.$emit('botao-componente-clicado')
+		    }
+		  },
+		})
+		new Vue({
+		  el: '#counter-event-example',
+		  data: {
+		    total: 0
+		  },
+		  methods: {
+		    incrementTotal: function () {
+		      this.total += 1
+		    }
+		  }
+		})
+
+	</script>
+</body>
+</html>

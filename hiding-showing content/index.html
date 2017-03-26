@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Example</title>
+
+</head>
+<body>
+	<div id="app">
+
+		<button v-on:click="toggleContentComIf()">Show/hide content com v-if</button>
+		
+		<!-- v-if é usado para esconder/exibir conteúdo -->
+		<h1 v-if="showContentComIf">Conteúdo sendo exibido com v-if</h1>
+		<!-- Ao contrário do angularJS, vue.js tem um v-else. Ele deve ser colocado imediatamente após o v-if -->
+		<h2 v-else="!showContentComIf">Conteúdo original v-if foi oculto e estamos agora exibindo esse.</h2>
+
+		<button v-on:click="toggleContentComShow()">Show/hide content com v-show</button>
+		
+		<h1 v-if="showContentComShow">Conteúdo sendo exibido com v-show</h1>
+
+		<h2 v-else="!showContentComShow">Conteúdo original v-show foi oculto e estamos agora exibindo esse.</h2>
+
+		
+	</div>
+	
+	<script src="../vue.js"></script>
+	<script>
+		new Vue({
+			el: "#app",
+
+			data: {
+				showContentComIf: true,
+				showContentComShow: true
+			},
+
+			// Todas as funções a serem chamadas pela view são definidas aqui.
+			methods: {
+				toggleContentComIf: function() {
+					this.showContentComIf = !this.showContentComIf;
+				},
+
+				toggleContentComShow: function() {
+					this.showContentComShow = !this.showContentComShow;
+				}
+			}
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Example</title>
+</head>
+<body>
+	<div id="app">
+		<input type="text" v-model="a">
+	</div>
+	
+	<script src="../vue.js"></script>
+	<script>
+
+		var vm = new Vue({
+			el: "#app",
+			data: {
+				a: 1
+			}
+		});
+
+		vm.$watch('a', function(newVal, oldVal) {
+			console.log('Mudando valor de ' + oldVal + ' para ' + newVal);
+		})
+
+	</script>
+</body>
+</html>

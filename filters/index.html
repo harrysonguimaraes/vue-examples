@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Example</title>
+</head>
+<body>
+	<div id="app">
+		<h1>Valor da variável: {{valor}}.</h1>
+		<h1>O custo da caneta é de {{valor | dinheiro}}.</h1>
+	</div>
+	
+	<script src="../vue.js"></script>
+	<script>
+
+		// Define um filtro customizado chamado "dinheiro"
+		Vue.filter('dinheiro', function (value) {
+		    return 'R$' + value.toFixed(2);
+		});
+		new Vue({
+			el: "#app",
+
+			data: {
+				valor: 10
+			}
+		})
+	</script>
+</body>
+</html>

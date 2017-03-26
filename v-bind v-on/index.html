@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Example</title>
+</head>
+<body>
+	<div id="app">
+		<a v-bind:id="meuId" v-bind:href="url">Google</a>
+		<button v-bind:disabled="desabilitado">Desabilitado</button>
+		<button v-on:click="habilitarBotao()">Habilitar botão</button>
+	</div>
+	
+	<script src="../vue.js"></script>
+	<script>
+
+		var vm = new Vue({
+			el: "#app",
+			data: {
+				url: 'http://www.google.com.br',
+				meuId: 'link',
+				desabilitado: true
+			},
+			methods: {
+				habilitarBotao: function() {
+					this.desabilitado = false;
+				}
+
+			}
+		});
+
+
+	</script>
+</body>
+</html>

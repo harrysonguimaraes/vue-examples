@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Example</title>
+
+</head>
+<body>
+	<div id="app">
+		
+		<input type="text" v-model="texto">
+		<p>{{texto}}</p>
+
+		<textarea name="" id="" cols="30" rows="10" v-model="textoArea"></textarea>
+		<p>{{textoArea}}</p>
+
+		<p>Checkbox</p>
+		<input id="checkbox" type="checkbox" v-model="checked">
+		<label for="checkbox">Check me</label>
+
+		<p>Múltiplos checkbox parao mesmo array</p>
+		<p>Como os values dos checkbox são diferentes, cada valor vai para uma posição do array. Se fossem iguais os values seriam checkados iguais tb.</p>
+		<input id="John" type="checkbox" value="John" v-model="checkboxes">
+		<label for="John">John</label>
+		<input id="Jose" type="checkbox" value="José" v-model="checkboxes">
+		<label for="Jose">Jose</label>
+		<input id="Joao" type="checkbox" value="João" v-model="checkboxes">
+		<label for="Joao">João</label>
+		<p>{{checkboxes}}</p>
+
+		<p>Radio</p>
+		<input type="radio" id="one" value="um" v-model="radio">
+		<label for="one"> Um</label>
+		<br>
+		<input type="radio" id="two" value="dois" v-model="radio">
+		<label for="two">Dois</label>
+		<br>
+		<span>Escolhido: {{radio}}</span>
+
+		<!-- Ideal sempre ter um valor inicial com value="" disabled-->
+		<p>Select:</p>
+		<select v-model="select">
+			<option value="" disabled>-- Selecione --</option>
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+		</select>
+		<p>Selecionado: {{select}}</p>
+
+		<p>Select com options dinamicos:</p>
+		<select v-model="selectDinamico">
+			<option value="" disabled="">Selecione</option>
+			<option v-for="option in arraySelecao" v-bind:value="option.value">{{option.texto}}</option>
+		</select>
+		<p>Selecionado: {{selectDinamico}}</p>
+
+	</div>
+	
+	<script src="../vue.js"></script>
+	<script>
+		new Vue({
+			el: "#app",
+
+			data: {
+				texto: 'Texto inicial',
+				textoArea: 'Text area',
+				checked: true,
+				checkboxes: [],
+				radio: '',
+				select: '',
+				selectDinamico: '',
+				arraySelecao: [
+					{texto: 'Um', value: 1},
+					{texto: 'Dois', value: 2},
+					{texto: 'Três', value: 3}
+				]
+			}
+			
+
+
+		});
+	</script>
+</body>
+</html>

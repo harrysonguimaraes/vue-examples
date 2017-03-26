@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Example</title>
+</head>
+<body>
+	<div id="app">
+
+		<ol>
+			<!-- A variável exibirComponente é do componente e estou tentando usá-la fora.Ela deve estar dentro do template -->
+			<custom-component-wrong v-show="exibirComponente"></custom-component-wrong>
+
+			<!-- Usado da maneira correta -->
+			<custom-component-right></custom-component-right>
+		</ol>
+
+	</div>
+	
+	<script src="../vue.js"></script>
+	<script>
+
+		// É um componente global.
+		Vue.component('custom-component-wrong', {
+			template: '<li>Esse é um componente sendo usado erroneamente.</li>',
+			data: function() {
+				return {
+					exibirComponente : true
+				}
+			}
+		});
+
+		Vue.component('custom-component-right', {
+			template: '<li v-show="exibirComponente">Componente certo.</li>',
+			data: function() {
+				return {
+					exibirComponente: true
+				}
+			}
+		})
+
+		new Vue({
+			el: "#app"
+		});
+
+	</script>
+</body>
+</html>

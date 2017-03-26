@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Example</title>
+</head>
+<body>
+	<div id="app">
+
+		<ul>
+			<li v-for="fruta in frutas">{{fruta.nome}}</li>
+		</ul>
+
+		<input type="text" v-model="novaFruta">
+		<button v-on:click="addFruta()">Adicionar fruta</button>
+	</div>
+	
+	<script src="../vue.js"></script>
+	<script>
+		new Vue({
+			el: "#app",
+
+			data: {
+				frutas: [
+					{nome: "Maçã"},
+					{nome: "Uva"},
+					{nome: "Banana"}
+				],
+				novaFruta: "Pera"
+			},
+
+			methods: {
+				addFruta: function() {
+					this.frutas.push({nome: this.novaFruta});
+					this.novaFruta = "";
+				}
+			}
+		})
+	</script>
+</body>
+</html>

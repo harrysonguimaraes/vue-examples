@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Example</title>
+</head>
+<body>
+	<div id="app">
+
+		<table>
+			<thead>
+				<th>Nome</th>
+				<th>Ação</th>
+			</thead>
+			<tbody>
+				<tr v-for="(fruta, index) in frutas">
+					<td>{{fruta.nome}}</td>
+					<td><button v-on:click="deletar(index)">Remover</button></td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+	
+	<script src="../vue.js"></script>
+	<script>
+		new Vue({
+			el: "#app",
+
+			data: {
+				frutas: [
+					{nome: "Maçã"},
+					{nome: "Uva"},
+					{nome: "Banana"}
+				]
+			},
+			methods: {
+				deletar: function(index) {
+					this.frutas.splice(index, 1);
+				}
+			}
+		})
+	</script>
+</body>
+</html>

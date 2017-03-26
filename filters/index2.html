@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Example</title>
+</head>
+<body>
+	<div id="app">
+		<input type="text" v-model="texto">
+		<p>{{texto | capitalize | money('RS')}}</p>
+	</div>
+	
+	<script src="../vue.js"></script>
+	<script>
+
+		var vm = new Vue({
+			el: "#app",
+			data: {
+				texto: 'texto a ser capitalizado'
+			},
+
+			filters: {
+				capitalize: function(value) {
+					if (!value) {
+						return '';
+					}
+					value = value.toString();
+					return value.charAt(0).toUpperCase() + value.slice(1);
+				},
+
+				money: function(value, currency) {
+					if (!value) {
+						return ''
+					}
+					return currency + ' '+ value;
+				}
+			}
+
+		});
+
+
+
+	</script>
+</body>
+</html>

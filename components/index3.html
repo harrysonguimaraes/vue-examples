@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Example</title>
+</head>
+<body>
+	<div id="app">
+
+		<ol>
+			<li><componente></componente></li>
+		</ol>
+	</div>
+	
+	<script src="../vue.js"></script>
+	<script>
+
+		new Vue({
+			el: "#app",
+
+			components: {
+				'componente': {
+					template: '<h1>Meu componente local</h1>'
+				}
+			}
+		});
+
+	</script>
+</body>
+</html>

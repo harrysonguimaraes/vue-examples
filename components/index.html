@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Example</title>
+</head>
+<body>
+	<div id="app">
+
+		<ol>
+			<custom-component></custom-component>
+			<li>Item</li>
+		</ol>
+	</div>
+	
+	<script src="../vue.js"></script>
+	<script>
+
+		// É um componente global.
+		Vue.component('custom-component', {
+			template: '<li>Esse é um componente.</li>'
+		});
+
+		new Vue({
+			el: "#app"
+		});
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Example</title>
+</head>
+<body>
+	<div id="app">
+
+		<nav>
+			
+			<a href="" v-on:click="selecionarItem('Home')">Home</a>
+			<a href="" v-on:click="selecionarItem('Contato')">Contato</a>
+			<a href="" v-on:click="selecionarItem('Sobre')">Sobre</a>
+			<a href="#" v-on:click="selecionarItem('Projetos')">Projetos</a>	
+
+		</nav>
+
+		<p>Item selecionado: {{itemAtivo}}</p>
+
+	</div>
+	
+	<script src="../vue.js"></script>
+	<script>
+		new Vue({
+			el: "#app",
+
+			data: {
+				itemAtivo: "Home"
+			},
+
+			// Todas as funções a serem chamadas pela view são definidas aqui.
+			methods: {
+				selecionarItem: function(item) {
+					this.itemAtivo = item;
+				}
+			}
+		});
+	</script>
+</body>
+</html>

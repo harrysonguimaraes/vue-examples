@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Example</title>
+
+	<style>
+		.active {
+			color: orange;
+		}
+		.texto-grande {
+			font-size: 30px;
+		}
+		.main {
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+
+		<p class="main" v-bind:class="{'active': isAtivo, 'texto-grande': big}">Parágrafo</p>
+
+	</div>
+	
+	<script src="../vue.js"></script>
+	<script>
+		new Vue({
+			el: "#app",
+
+			data: {
+				isAtivo: true,
+				big: true
+			},
+
+
+		});
+	</script>
+</body>
+</html>

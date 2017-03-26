@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Example</title>
+</head>
+<body>
+	<div id="app">
+		<h1>{{msg}}</h1>
+	</div>
+
+	<div id="otherAppScope">
+		<h2>{{msg}}</h2>
+	</div>
+	
+	<script src="../vue.js"></script>
+	<script>
+		new Vue({
+  			el: '#app',
+  			data: {
+  				msg: "Hello world"
+  			}
+		
+		});
+		// Cria uma instância vue passando um objeto de configurações.
+		new Vue({
+			el : "#otherAppScope",
+			data: {
+				msg: "Mensagem de outro objeto vue."
+			}
+		})
+		// Note que o escopo do objeto é fechado pelo ID do elemento usado para criação do objeto vue.
+	</script>
+</body>
+</html>

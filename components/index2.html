@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Example</title>
+</head>
+<body>
+	<div id="app">
+
+		<ol>
+			<custom-component v-for="item in items" v-bind:content="item"></custom-component>
+		</ol>
+	</div>
+	
+	<script src="../vue.js"></script>
+	<script>
+
+		// Componente global
+		// Props serve para passar variáveis externas para o componente.
+		// events serve para passar algo do componente para o ambiente externo.
+		// slots serve para inserção de conteúdo de fora para dentro do componente.
+		Vue.component('custom-component', {
+			props:['content'],
+			template: '<li>{{content}}</li>'
+		});
+
+		new Vue({
+			el: "#app",
+			data: {
+				items: ['Maça', 'Banana', 'Pera', 'Uva', 'Brócolis']
+			}
+		});
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Example</title>
+
+</head>
+<body>
+	<div id="app">
+		
+		<!-- Acionado somente via enter. Poderia ser tb keyup.13 -->
+		<button v-on:keyUp.enter="enter()">Click</button>
+
+
+	</div>
+	
+	<script src="../vue.js"></script>
+	<script>
+		new Vue({
+			el: "#app",
+
+			data: {
+			},
+			methods: {
+				enter: function() {
+					alert('Acionado via enter');
+				}
+			}
+
+
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Example</title>
+
+</head>
+<body>
+	<div id="app">
+		
+		<!-- É possível passar o evento para o méotod -->
+		<button v-on:click="exibirEvento($event)">Click e veja seu console</button>
+
+		<!-- stopPropagation -->
+		<button v-on:click.stop="pararPropagacao()">Parar propagação</button>
+		
+		<!-- preventDefault -->
+		<button v-on:click.prevent="prevent()">Prevent Default</button>
+
+
+		<button v-on:click.stop.prevent>Chaining</button>
+	</div>
+	
+	<script src="../vue.js"></script>
+	<script>
+		new Vue({
+			el: "#app",
+
+			data: {
+			},
+			methods: {
+				exibirEvento: function(event) {
+					console.log(event);
+				},
+				pararPropagacao: function() {
+					console.log('propagação interrompida no click.');
+				},
+				prevent:function() {
+					console.log('Prevent Default');
+				}
+			}
+
+
+		});
+	</script>
+</body>
+</html>

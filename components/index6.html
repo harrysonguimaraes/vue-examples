@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Example</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+	<div id="app">
+
+		<div class="row">
+			<div class="col-md-6">
+				<panel panel-color="panel-primary">
+				<!-- O componente tem um slot que será substitúido pelo conteúdo dentro do panel (o parágrafo abaixo) -->
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat provident, deleniti, veniam debitis incidunt ea autem quae, suscipit voluptate doloremque quidem, voluptatibus vel. Saepe dolorem sequi quos neque provident dolorum?</p>
+				</panel>
+			</div>
+
+			<div class="col-md-6">
+				<!-- Nesse  caso não tem nada dentro do panel então o slot não é substituído. -->
+				<panel panel-color="panel-success"></panel>	
+			</div>
+		</div>
+
+	</div>
+	
+	<script src="../vue.js"></script>
+	<script>
+
+		// É um componente global.
+		Vue.component('panel', {
+			template: '<div class="panel" v-bind:class="panelColor"><div class="panel-heading"><h3 class="panel-title">Título do panel</h3></div><div class="panel-body"><slot>Default Panel body</slot></div></div>',
+			props:['panelColor']
+		});
+
+		new Vue({
+			el: "#app"
+		});
+
+	</script>
+</body>
+</html>

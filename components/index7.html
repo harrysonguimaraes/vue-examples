@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Example</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+	<div id="app">
+
+		<div class="row">
+			<div class="col-md-6">
+				<panel panel-color="panel-primary">
+						<h3 slot="header" class="panel-title">Painel com novo título</h3>
+						<!-- O componente possui duas porções de HTML que serão substituídos. Uma é o header e outra o content. Assim, são slots nomeados. -->
+
+						<p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero at voluptatem debitis maiores labore, mollitia necessitatibus dignissimos delectus hic reprehenderit culpa cumque, itaque ratione animi dolorum optio voluptate nemo. Necessitatibus.</p>
+				</panel>
+
+			</div>
+				
+		</div>
+
+	</div>
+	
+	<script src="../vue.js"></script>
+	<script>
+
+		// É um componente global.
+		Vue.component('panel', {
+			template: '<div class="panel" v-bind:class="panelColor"><div class="panel-heading"><slot name="header"></slot></div><div class="panel-body"><slot name="content">Default Panel body</slot></div></div>',
+			props:['panelColor']
+		});
+
+		new Vue({
+			el: "#app"
+		});
+
+	</script>
+</body>
+</html>

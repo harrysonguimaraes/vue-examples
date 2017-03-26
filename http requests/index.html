@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Example</title>
+</head>
+<body>
+	<div id="app">
+		<h1>Estados do Brasil</h1>
+		<ul>
+			<li v-for="estado in estados">{{estado.nome}}</li>
+		</ul>
+	</div>
+	
+	<script src="../vue.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.2.1/vue-resource.min.js"></script>
+	<!-- Não é mais o módulo oficial para http requests do vue.js, mas ainda é o mais usado -->
+	<script>
+		new Vue({
+  			el: '#app',
+  			data: {
+  				estados: []
+  			},
+  			mounted: function() {
+  				// this.$http.post ...
+  				// this.$http.delete ...
+  				// API documentation: https://github.com/pagekit/vue-resource/tree/develop/docs
+				this.$http.get('http://car.semas.pa.gov.br/site/estados/buscarEstados')
+					.then(function(response) {
+						console.log(response);
+				  		this.estados = response.body;
+					});
+  			}
+		
+		});
+	</script>
+</body>
+</html>

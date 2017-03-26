@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Example</title>
+</head>
+<body>
+	<div id="app">
+		<p>{{texto}}</p>
+		<p>{{reverseText}}</p>
+	</div>
+	
+	<script src="../vue.js"></script>
+	<script>
+
+		var vm = new Vue({
+			el: "#app",
+			data: {
+				texto: 'texto a ser invertido'
+			},
+
+			// Esse valor é calculado (computed) em execução.
+			// É como uma variável dentro de 'data', só que com uma computação sobre ela.
+			// Visualmente teria o mesmo efeito qe declarar um method .reverseMessage(), mas o computed é feito cache, e a function é invocada sempre. Assim, desde que não se muda o 'texto', o computed nunca é reavaliado, e pelo methos é sempre invocado novamente.
+			// O mesmo pode ser feito com um watch em 'texto', mas novamente o computed é melho.
+			computed: {
+				reverseText: function() {
+					return this.texto.split('').reverse().join('');
+				}
+			}
+
+			
+
+		});
+
+
+
+	</script>
+</body>
+</html>
