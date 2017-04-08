@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Example</title>
+</head>
+<body>
+	<div id="app">
+
+		<!-- <lista-pessoas></lista-pessoas> -->
+		<!-- <detalhe-pessoa></detalhe-pessoa> -->
+		<router-view></router-view>
+
+	</div>
+
+	<!-- Cria-se um template para ser usado como um componente que vira uma tag HTML -->
+	<template id="lista-peossas-template">
+		<ul>
+			<li v-for="pessoa in pessoas">
+				{{pessoa.nome}}
+				<!-- A rota nomeada pessoa no routes será invocada aqui. -->
+				<!-- Ao invés de especificar a url hardcoded, como no outro exemplo lá embaixo, nesse exemplo chamamos a url pelo name (pessoa), que foi nomeado na declaração da rota. -->
+				<router-link v-bind:to="{ name: 'pessoa', params: { id: pessoa.link }}">Detalhes da pessoa</router-link>
+			</li>
+		</ul>
+	</template>
+
+	<template id="detalhe-pessoa-template">
+		<div>
+			<h1>Detalhes da pessoa</h1>
+			<h3>{{pessoa.nome}}</h3>
+			<router-link to="/">Página inicial</router-link>
+		</div>
+	</template>
+	
+	<script src="../vue.js"></script>
+	<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+	<script>
+
+		// Cria-se o componente lista-pessoas passando o template criado e os pegando os dados a serem usados no template do pai (quem invocou o componente).
+		// Essa será uma view.
+		var ListaPessoas = Vue.extend({
+			template: '#lista-peossas-template',
+			data: function() {
+				return {
+					pessoas: this.$parent.pessoas
+				}
+			}
+		});
+
+		var DetalhePessoa = Vue.extend({
+			template: '#detalhe-pessoa-template',
+			// O componente coloca na variável dele a pessoa filtrada. Foi colocado na mão o selectedId, resultando no filtro com a pessoa com nome 'Harryson'.
+			data: function() {
+				var pai = this.$parent;
+				var filtrado = this.$parent.pessoas.filter(function(item) {
+					return (item.link == pai.$route.params.id) ? item : false;
+				});
+
+				return {
+					pessoa : filtrado[0]
+				}
+			}
+		});
+
+		var router = new VueRouter({
+			// mode pode ser history, hash ou abstract
+			// - history: simula diferentes urls usando a API de History do HTML5
+			// - hash: coloca uma # antes de cada 'pagina'
+			// - abstract: funciona em qualquer ambiente JS (server com node)
+			mode: 'hash',
+			// A URL base dos seus scripts
+			base: window.location.href,
+			// Auto-explicativo
+			routes: [
+				{path: '/', component: ListaPessoas},
+				// A rota abaixo é dinâmica. 
+				{path: '/:id', component: DetalhePessoa, name: 'pessoa'}
+			]
+		});
+
+		var app = new Vue({
+			router,
+			el: '#app',
+			data: {
+				pessoas: [
+					{nome: 'Harryson', link: '123'},
+					{nome: 'Júlio', link: '123456'}
+				]
+			}
+		});
+
+
+	</script>
+</body>
+</html>
